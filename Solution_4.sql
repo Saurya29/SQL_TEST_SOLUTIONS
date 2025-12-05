@@ -1,9 +1,10 @@
 -- Q4: Gross transaction value of each store's first order
--- -------------------------------------------------------
--- Idea:
--- 1. Order each store's transactions by purchase_time.
--- 2. Use ROW_NUMBER to mark the first transaction per store.
--- 3. Select only rn = 1 and return the corresponding GTV.
+Explanation
+
+1.For each store, we sort all transactions by their purchase_time.
+ROW_NUMBER() assigns 1 to the earliest transaction for that store.
+Picking WHERE rn = 1 gives us one row per store, containing both the timestamp and gross_transaction_value of that first order.
+    
 
 WITH store_orders AS (
     SELECT
