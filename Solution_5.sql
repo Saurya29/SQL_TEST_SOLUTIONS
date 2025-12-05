@@ -1,11 +1,11 @@
 -- Q5: Most popular item on buyers' first purchase
--- -----------------------------------------------
--- Idea:
--- 1. For each buyer_id, find their first purchase using ROW_NUMBER.
--- 2. From those first purchases, get the item_id.
--- 3. Join with items table to get item_name.
--- 4. Count how many buyers have each item_name as their first item.
--- 5. Return the item with the highest count.
+Explanation
+
+We identify each buyer’s first ever purchase with ROW_NUMBER().
+Then we use item_id from that first purchase to join with the items table and fetch item_name.
+We group by item_name and count how many times it appears as a first purchase item.
+Sorting in descending order of count and taking LIMIT 1 gives the most popular first-purchase item name.
+
 
 WITH buyer_first_purchase AS (
     SELECT
