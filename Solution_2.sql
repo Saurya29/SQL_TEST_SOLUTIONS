@@ -1,10 +1,9 @@
 -- Q2: Stores with at least 5 orders in October 2020
--- -------------------------------------------------
--- Idea:
--- 1. Filter transactions for October 2020.
--- 2. Count number of orders per store.
--- 3. Keep only stores with count >= 5.
--- 4. Count how many such stores exist.
+Explanation
+
+1.We isolate October 2020 using a date range [2020-10-01, 2020-11-01).
+2.For each store_id, we count the number of transactions in that month.
+3.Using HAVING COUNT(*) >= 5, we keep only those stores with at least 5 orders, and finally count how many such stores exist.
 
 WITH store_october_orders AS (
     SELECT
