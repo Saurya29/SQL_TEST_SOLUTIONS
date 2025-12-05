@@ -1,10 +1,10 @@
 -- Q3: Shortest interval from purchase to refund (in minutes) per store
--- -------------------------------------------------------------------
--- Idea:
--- 1. Consider only refunded transactions (refund_item IS NOT NULL).
--- 2. Compute difference between refund_time and purchase_time in minutes.
--- 3. For each store_id, keep the MIN of this difference.
 
+EXPLANATION:
+We only care about rows where a refund exists (refund_item IS NOT NULL).
+The time difference is refund_time - purchase_time. Using EXTRACT gives seconds; dividing by 60 converts to minutes.
+MIN over each store_id gives the shortest refund interval for that store.
+    
 SELECT
     store_id,
     MIN(EXTRACT(EPOCH FROM (refund_time - purchase_time)) / 60.0)
